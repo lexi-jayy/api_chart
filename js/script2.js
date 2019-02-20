@@ -11,21 +11,22 @@
       function drawDashboard() {
         // double quotes for eternal json sheets
         $.ajax({
-          url : 'https://my.api.mockaroo.com/income.json?key=5be81a40',
+          // url : 'https://my.api.mockaroo.com/income.json?key=5be81a40',
+          url : 'https://www.googleapis.com/books/v1/volumes?q=Wellington,NZ',
           dataType : 'json',
           Type:"GET", 
           success : function(dataFromJSON){
       	console.log("success");
         console.log(dataFromJSON);
-        console.log([dataFromJSON[0].first_name, dataFromJSON[0].income]);
+        // console.log([dataFromJSON[0].title, dataFromJSON[0].authors]);
 
         // // Create our data table.
         var data = new google.visualization.DataTable();
-         data.addColumn('string' , 'Name');
-         data.addColumn('number' , 'Income');
+         data.addColumn('string' , 'Title');
+         data.addColumn('number' , 'Authors');
          for (var i = 0; i < dataFromJSON.length; i++) {
-          console.log([dataFromJSON[i].first_name, dataFromJSON[i].income]),
-          data.addRow([dataFromJSON[i].first_name, dataFromJSON[i].income])
+          console.log([dataFromJSON[i].publishedDate, dataFromJSON[i].authors]),
+          data.addRow([dataFromJSON[i].publishedDate, dataFromJSON[i].authors])
         } // for loop
         var options = {
           title: 'name verses income'
